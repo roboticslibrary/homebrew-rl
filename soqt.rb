@@ -1,15 +1,15 @@
 class Soqt < Formula
   desc "A Qt GUI component toolkit library for Coin"
   homepage "https://bitbucket.org/Coin3D/soqt"
-  url "https://bitbucket.org/Coin3D/soqt/get/788d47c185c867778d393bcd96c4ac529faee412.tar.gz"
-  sha256 "2744ce35a6ade0104627d330087ccb46e4f3e0295d0f99cc47ed508ca3443d66"
+  url "https://bitbucket.org/Coin3D/soqt/get/945ec22f62191d37838ba13fd66a26415ac3e0b5.tar.gz"
+  sha256 "aaec649da36c8e450e4f8b1797cdd28a268d57119a3a813f68732ab9546cec54"
   version "1.6.0a"
   head "https://bitbucket.org/Coin3D/soqt/get/default.tar.gz"
 
   if !build.head?
     resource "sogui" do
-      url "https://bitbucket.org/Coin3D/sogui/get/bc52641c3d43115d88c11d15801e0c64996891ee.tar.gz"
-      sha256 "58638e192eb594f51de0e2fd42b12105a0d4274167ccbeac5cc93f0763c44d0b"
+      url "https://bitbucket.org/Coin3D/sogui/get/4f99ace822370b4f0e28ff23a527c4b30405673d.tar.gz"
+      sha256 "cc7d215f56c0eb02394c2e97a6b7b5aa94df134938e230cd0f728431ca33cabd"
     end
   else
     resource "sogui" do
