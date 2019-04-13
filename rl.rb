@@ -18,7 +18,7 @@ class Rl < Formula
   depends_on "solid" => :recommended
   depends_on "soqt" => :recommended
 
-  if !build.head?
+  stable do
     patch do
       url "https://github.com/roboticslibrary/rl/commit/2398cea996dce6c54330d6562fa1079daa1a9d4a.patch"
       sha256 "13ffdf2d9ad3f031752d640babc4040d38876784c23c48ba7c50c6c1a0175e29"

@@ -6,12 +6,14 @@ class Simage < Formula
   version "1.7.1a"
   head "https://bitbucket.org/Coin3D/simage/get/default.tar.gz"
 
-  if !build.head?
+  stable do
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/7a4972d58197.tar.gz"
       sha256 "333b75ed3fe1d22d6ab54256b2b09fa8c1c530170c20a55f57254afd05784204"
     end
-  else
+  end
+
+  head do
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/default.tar.gz"
     end

@@ -6,7 +6,7 @@ class Soqt < Formula
   version "1.6.0a"
   head "https://bitbucket.org/Coin3D/soqt/get/default.tar.gz"
 
-  if !build.head?
+  stable do
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/7a4972d58197.tar.gz"
       sha256 "333b75ed3fe1d22d6ab54256b2b09fa8c1c530170c20a55f57254afd05784204"
@@ -19,7 +19,9 @@ class Soqt < Formula
       url "https://bitbucket.org/Coin3D/sogui/get/04d1d8732971.tar.gz"
       sha256 "a1994750414a16e285d4a08df64fedf98479bd826af19bb4b71f11c24118e95b"
     end
-  else
+  end
+
+  head do
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/default.tar.gz"
     end

@@ -6,7 +6,7 @@ class Coin < Formula
   version "4.0.0a"
   head "https://bitbucket.org/Coin3D/coin/get/default.tar.gz"
 
-  if !build.head?
+  stable do
     resource "boost-header-libs-full" do
       url "https://bitbucket.org/Coin3D/boost-header-libs-full/get/25bb7785a024.tar.gz"
       sha256 "58acfff2ee643328746c585bd9c890b0e55d7e50eaa310ccc3892f3fbd1e5701"
@@ -15,7 +15,9 @@ class Coin < Formula
       url "https://bitbucket.org/Coin3D/cpack.d/get/7a4972d58197.tar.gz"
       sha256 "333b75ed3fe1d22d6ab54256b2b09fa8c1c530170c20a55f57254afd05784204"
     end
-  else
+  end
+
+  head do
     resource "boost-header-libs-full" do
       url "https://bitbucket.org/Coin3D/boost-header-libs-full/get/default.tar.gz"
     end
