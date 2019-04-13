@@ -23,6 +23,10 @@ class Rl < Formula
       url "https://github.com/roboticslibrary/rl/commit/2398cea996dce6c54330d6562fa1079daa1a9d4a.patch"
       sha256 "13ffdf2d9ad3f031752d640babc4040d38876784c23c48ba7c50c6c1a0175e29"
     end
+    patch do
+      url "https://github.com/roboticslibrary/rl/commit/8bfd262f7eaf23e298396ae0d3f7c360f20d2db1.patch"
+      sha256 "4bc0a110ad883af7e90a28717dabd0a473b27dd648fc1d264e16cef57375d625"
+    end
   end
 
   def install
