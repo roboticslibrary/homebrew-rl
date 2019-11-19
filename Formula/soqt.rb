@@ -1,19 +1,18 @@
 class Soqt < Formula
-  desc "A Qt GUI component toolkit library for Coin"
+  desc "Qt GUI component toolkit library for Coin"
   homepage "https://bitbucket.org/Coin3D/soqt"
-  url "https://bitbucket.org/Coin3D/soqt/get/c654fc427542.tar.gz"
-  sha256 "59f4030883e35cf1e9f4dc30429df6ff0f23c5420d61b7b19894b59beaa22ac5"
-  version "1.6.0a"
-  head "https://bitbucket.org/Coin3D/soqt/get/default.tar.gz"
+  version "1.6.0a-1"
 
   stable do
+    url "https://bitbucket.org/Coin3D/soqt/get/9394e5e3aeaf.tar.gz"
+    sha256 "bbdc1c02d14d83fcae425d4f620d5e44c2c83a747eafb0287a042699e67478bb"
     resource "cpack.d" do
-      url "https://bitbucket.org/Coin3D/cpack.d/get/7a4972d58197.tar.gz"
-      sha256 "333b75ed3fe1d22d6ab54256b2b09fa8c1c530170c20a55f57254afd05784204"
+      url "https://bitbucket.org/Coin3D/cpack.d/get/cf223b81fd77.tar.gz"
+      sha256 "dab707c42138b42c0e1cc9bbae6a087004ab4717ec76a69b5b8dc20ac5b412ba"
     end
     resource "soanydata" do
-      url "https://bitbucket.org/Coin3D/soanydata/get/f8721d842e1d.tar.gz"
-      sha256 "5220f59ea7bdbaad28f50640ca384db8592f1d4767664531f7a25ce88e630485"
+      url "https://bitbucket.org/Coin3D/soanydata/get/f429a8af8628.tar.gz"
+      sha256 "f77ef2484e71a96d50693e354ad544cced88abd7adb389a9459f26e6c7844119"
     end
     resource "sogui" do
       url "https://bitbucket.org/Coin3D/sogui/get/04d1d8732971.tar.gz"
@@ -22,6 +21,7 @@ class Soqt < Formula
   end
 
   head do
+    url "https://bitbucket.org/Coin3D/soqt/get/default.tar.gz"
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/default.tar.gz"
     end
@@ -39,16 +39,13 @@ class Soqt < Formula
 
   def install
     resource("cpack.d").stage do
-      @cpackdpath = Dir.pwd
-      system "cp", "-a", "#{@cpackdpath}", buildpath/"cpack.d"
+      cp_r Dir.pwd, buildpath/"cpack.d"
     end
     resource("soanydata").stage do
-      @soanydatapath = Dir.pwd
-      system "cp", "-a", "#{@soanydatapath}", buildpath/"data"
+      cp_r Dir.pwd, buildpath/"data"
     end
     resource("sogui").stage do
-      @soguipath = Dir.pwd
-      system "cp", "-a", "#{@soguipath}", buildpath/"src/Inventor/Qt/common"
+      cp_r Dir.pwd, buildpath/"src/Inventor/Qt/common"
     end
     mkdir "build" do
       system "cmake", "..", *std_cmake_args, "-DSOQT_BUILD_DOCUMENTATION=OFF"

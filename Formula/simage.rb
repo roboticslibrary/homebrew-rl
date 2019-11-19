@@ -1,19 +1,20 @@
 class Simage < Formula
-  desc "A library with image format loaders and front-ends to common import libraries"
+  desc "Image format loaders and front-ends to common import libraries"
   homepage "https://bitbucket.org/Coin3D/simage"
-  url "https://bitbucket.org/Coin3D/simage/get/146ceef3b157.tar.gz"
-  sha256 "9e0334b2ddaae540857dd50b41cf971bf7fee90cc421973848416dfef9fca3d9"
-  version "1.7.1a"
-  head "https://bitbucket.org/Coin3D/simage/get/default.tar.gz"
+  version "1.7.1a-1"
 
   stable do
+    url "https://bitbucket.org/Coin3D/simage/get/afd8852f40c8.tar.gz"
+    sha256 "bd6a2bcdfa036585d830ab5ea29c42991122dd89ea8d300b580168ffecb14f1b"
+    patch :DATA
     resource "cpack.d" do
-      url "https://bitbucket.org/Coin3D/cpack.d/get/7a4972d58197.tar.gz"
-      sha256 "333b75ed3fe1d22d6ab54256b2b09fa8c1c530170c20a55f57254afd05784204"
+      url "https://bitbucket.org/Coin3D/cpack.d/get/cf223b81fd77.tar.gz"
+      sha256 "dab707c42138b42c0e1cc9bbae6a087004ab4717ec76a69b5b8dc20ac5b412ba"
     end
   end
 
   head do
+    url "https://bitbucket.org/Coin3D/simage/get/default.tar.gz"
     resource "cpack.d" do
       url "https://bitbucket.org/Coin3D/cpack.d/get/default.tar.gz"
     end
@@ -31,8 +32,7 @@ class Simage < Formula
 
   def install
     resource("cpack.d").stage do
-      @cpackdpath = Dir.pwd
-      system "cp", "-a", "#{@cpackdpath}", buildpath/"cpack.d"
+      cp_r Dir.pwd, buildpath/"cpack.d"
     end
     mkdir "build" do
       system "cmake", "..", *std_cmake_args
@@ -44,3 +44,13 @@ class Simage < Formula
     system "false"
   end
 end
+
+__END__
+diff --git a/packaging/macosx/Welcome.rtf b/packaging/macosx/Welcome.rtf
+new file mode 100644
+index 0000000..08778d7
+--- /dev/null
++++ b/packaging/macosx/Welcome.rtf
+@@ -0,0 +1 @@
++{\rtf1}
+\ No newline at end of file
