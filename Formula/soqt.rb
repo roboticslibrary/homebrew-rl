@@ -54,6 +54,26 @@ class Soqt < Formula
   end
 
   test do
-    system "false"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION 3.0)
+      project(testSoQt)
+      find_package(SoQt)
+      add_executable(testSoQt testSoQt.cpp)
+      target_link_libraries(testSoQt SoQt::SoQt)
+    EOS
+    (testpath/"testSoQt.cpp").write <<~EOS
+      #include <Inventor/SoDB.h>
+      #include <Inventor/Qt/SoQt.h>
+      int main(int argc, char** argv) {
+        SoDB::init();
+        QWidget* widget = SoQt::init(argc, argv, argv[0]);
+        return 0;
+      }
+    EOS
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args, "-DCMAKE_PREFIX_PATH=/usr/local/opt/qt/lib/cmake"
+      system "make"
+      system "./testSoQt"
+    end
   end
 end

@@ -33,6 +33,24 @@ class Coin < Formula
   end
 
   test do
-    system "false"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION 3.0)
+      project(testCoin)
+      find_package(Coin)
+      add_executable(testCoin testCoin.cpp)
+      target_link_libraries(testCoin Coin::Coin)
+    EOS
+    (testpath/"testCoin.cpp").write <<~EOS
+      #include <Inventor/SoDB.h>
+      int main() {
+        SoDB::init();
+        return 0;
+      }
+    EOS
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args
+      system "make"
+      system "./testCoin"
+    end
   end
 end

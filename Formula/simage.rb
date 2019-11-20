@@ -41,7 +41,28 @@ class Simage < Formula
   end
 
   test do
-    system "false"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION 3.0)
+      project(testSimage)
+      find_package(simage)
+      add_executable(testSimage testSimage.cpp)
+      target_link_libraries(testSimage simage::simage)
+    EOS
+    (testpath/"testSimage.cpp").write <<~EOS
+      #include <simage.h>
+      int main() {
+        int major;
+        int minor;
+        int micro;
+        simage_version(&major, &minor, &micro);
+        return 0;
+      }
+    EOS
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args
+      system "make"
+      system "./testSimage"
+    end
   end
 end
 

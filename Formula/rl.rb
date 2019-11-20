@@ -36,6 +36,26 @@ class Rl < Formula
   end
 
   test do
-    system "false"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      cmake_minimum_required(VERSION 3.1)
+      project(testRl)
+      set(CMAKE_CXX_STANDARD 11)
+      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+      find_package(RL COMPONENTS MDL)
+      add_executable(testRl testRl.cpp)
+      target_link_libraries(testRl rl::mdl)
+    EOS
+    (testpath/"testRl.cpp").write <<~EOS
+      #include <rl/mdl/Model.h>
+      int main(int argc, char** argv) {
+        rl::mdl::Model model;
+        return 0;
+      }
+    EOS
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args
+      system "make"
+      system "./testRl"
+    end
   end
 end
