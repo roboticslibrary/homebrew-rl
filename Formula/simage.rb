@@ -13,6 +13,12 @@ class Simage < Formula
     end
   end
 
+  bottle do
+    root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
+    cellar :any
+    sha256 "9fbb57e620d3e25c8e468b4aac6b613b3692248fcd799c46064e59fec24dd15c" => :catalina
+  end
+
   head do
     url "https://bitbucket.org/Coin3D/simage/get/default.tar.gz"
     resource "cpack.d" do
