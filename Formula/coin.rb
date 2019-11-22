@@ -12,6 +12,12 @@ class Coin < Formula
     end
   end
 
+  bottle do
+    root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
+    cellar :any
+    sha256 "c601688f79068543f2746260d653e05e98f435be01a76955f4e5b2aa503670e9" => :catalina
+  end
+
   head do
     url "https://bitbucket.org/Coin3D/coin/get/default.tar.gz"
     resource "cpack.d" do
