@@ -24,6 +24,7 @@ class Soqt < Formula
     root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
     cellar :any
     sha256 "60e2dffbaa542c8c1ada63ab1036e4448574e529ff60701b9aa46b83ad4d58b1" => :catalina
+    sha256 "dc91eebb4c47ccc52bd955fc69f822f475b994284964c17d53a741ef7ea6faa5" => :mojave
   end
 
   head do
