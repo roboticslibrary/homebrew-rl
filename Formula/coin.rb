@@ -16,6 +16,7 @@ class Coin < Formula
     root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
     cellar :any
     sha256 "c601688f79068543f2746260d653e05e98f435be01a76955f4e5b2aa503670e9" => :catalina
+    sha256 "4f039176121598d73f71407f99a598f3ab65c431d9eb3b68b4b8fe0df6057dee" => :mojave
   end
 
   head do
