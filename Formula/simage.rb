@@ -17,6 +17,7 @@ class Simage < Formula
     root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
     cellar :any
     sha256 "9fbb57e620d3e25c8e468b4aac6b613b3692248fcd799c46064e59fec24dd15c" => :catalina
+    sha256 "19b2c609706216ef928ebe269acc297899fdf855c6c5566198c9977cc1e28a47" => :mojave
   end
 
   head do
