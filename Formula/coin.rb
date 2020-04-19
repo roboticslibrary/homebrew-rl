@@ -1,40 +1,29 @@
 class Coin < Formula
   desc "High-level, retained-mode toolkit for effective 3D graphics development"
-  homepage "https://bitbucket.org/Coin3D/coin"
-  version "4.0.0a-1"
+  homepage "https://github.com/coin3d/coin"
+  version "4.0.0-2"
 
   stable do
-    url "https://bitbucket.org/Coin3D/coin/get/a4ce638f43bd.tar.gz"
-    sha256 "fda0fdaa4537d3d5af9238ba6a3b38b7496813ae5dc872fa1cc4c11d84d69788"
-    resource "cpack.d" do
-      url "https://bitbucket.org/Coin3D/cpack.d/get/cf223b81fd77.tar.gz"
-      sha256 "dab707c42138b42c0e1cc9bbae6a087004ab4717ec76a69b5b8dc20ac5b412ba"
-    end
+    url "https://github.com/coin3d/coin.git", :revision => "07d438c5e0de005d1eee929caf22df6cb7f17ec3"
   end
 
   bottle do
     root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
     cellar :any
-    sha256 "c601688f79068543f2746260d653e05e98f435be01a76955f4e5b2aa503670e9" => :catalina
-    sha256 "4f039176121598d73f71407f99a598f3ab65c431d9eb3b68b4b8fe0df6057dee" => :mojave
+    sha256 "cd89294dfc580af37ba059fd067cef04a1fa82d75b8ba2f70d232e2fbb1f4bce" => :catalina
+    sha256 "ef8163945469309ba603dce053b22709f362983fe614060e80e4be05897d028c" => :mojave
   end
 
   head do
-    url "https://bitbucket.org/Coin3D/coin/get/default.tar.gz"
-    resource "cpack.d" do
-      url "https://bitbucket.org/Coin3D/cpack.d/get/default.tar.gz"
-    end
+    url "https://github.com/coin3d/coin.git"
   end
 
   depends_on "cmake" => :build
   depends_on "simage" => :recommended
 
   def install
-    resource("cpack.d").stage do
-      cp_r Dir.pwd, buildpath/"cpack.d"
-    end
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args, "-DCOIN_BUILD_DOCUMENTATION=OFF"
+      system "cmake", "..", *std_cmake_args, "-DCOIN_BUILD_DOCUMENTATION=OFF", "-DCOIN_BUILD_TESTS=OFF"
       system "make", "install"
     end
   end
@@ -47,17 +36,53 @@ class Coin < Formula
       add_executable(testCoin testCoin.cpp)
       target_link_libraries(testCoin Coin::Coin)
     EOS
+    (testpath/"test.iv").write <<~EOS
+      \#Inventor V1.0 ascii
+      DEF test Cube {
+      }
+    EOS
     (testpath/"testCoin.cpp").write <<~EOS
+      #include <stdio.h>
+      #include <string.h>
       #include <Inventor/SoDB.h>
-      int main() {
+      #include <Inventor/SoInput.h>
+      #include <Inventor/nodes/SoCube.h>
+      #include <Inventor/nodes/SoSeparator.h>
+      int main(int argc, char** argv) {
+        if (argc < 2) {
+          printf("Usage: testCoin FILENAME\\n");
+          return 1;
+        }
         SoDB::init();
+        SoInput input;
+        if (!input.openFile(argv[1])) {
+          printf("Failed to open file\\n");
+          return 1;
+        }
+        SoSeparator* root = SoDB::readAll(&input);
+        if (NULL == root) {
+          printf("Failed to read file\\n");
+          return 1;
+        }
+        root->ref();
+        printf("type id: %s\\n", root->getChild(0)->getTypeId().getName().getString());
+        if (!root->getChild(0)->isOfType(SoCube::getClassTypeId())) {
+          printf("type mismatch\\n");
+          return 1;
+        }
+        printf("name: %s\\n", root->getChild(0)->getName().getString());
+        if (0 != strcmp(root->getChild(0)->getName().getString(), "test")) {
+          printf("name mismatch\\n");
+          return 1;
+        }
+        root->unref();
         return 0;
       }
     EOS
     mkdir "build" do
       system "cmake", "..", *std_cmake_args
       system "make"
-      system "./testCoin"
+      system "./testCoin", testpath/"test.iv"
     end
   end
 end
