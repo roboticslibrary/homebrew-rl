@@ -42,37 +42,36 @@ class Coin < Formula
       }
     EOS
     (testpath/"testCoin.cpp").write <<~EOS
-      #include <stdio.h>
-      #include <string.h>
+      #include <iostream>
       #include <Inventor/SoDB.h>
       #include <Inventor/SoInput.h>
       #include <Inventor/nodes/SoCube.h>
       #include <Inventor/nodes/SoSeparator.h>
       int main(int argc, char** argv) {
         if (argc < 2) {
-          printf("Usage: testCoin FILENAME\\n");
+          std::cout << "Usage: testCoin FILENAME" << std::endl;
           return 1;
         }
         SoDB::init();
         SoInput input;
         if (!input.openFile(argv[1])) {
-          printf("Failed to open file\\n");
+          std::cout << "Failed to open file" << std::endl;
           return 1;
         }
         SoSeparator* root = SoDB::readAll(&input);
         if (NULL == root) {
-          printf("Failed to read file\\n");
+          std::cout << "Failed to read file" << std::endl;
           return 1;
         }
         root->ref();
         printf("type id: %s\\n", root->getChild(0)->getTypeId().getName().getString());
         if (!root->getChild(0)->isOfType(SoCube::getClassTypeId())) {
-          printf("type mismatch\\n");
+          std::cout << "type mismatch" << std::endl;
           return 1;
         }
         printf("name: %s\\n", root->getChild(0)->getName().getString());
         if (0 != strcmp(root->getChild(0)->getName().getString(), "test")) {
-          printf("name mismatch\\n");
+          std::cout << "name mismatch" << std::endl;
           return 1;
         }
         root->unref();

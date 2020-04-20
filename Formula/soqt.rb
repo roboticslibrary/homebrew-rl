@@ -38,22 +38,28 @@ class Soqt < Formula
       target_link_libraries(testSoQt SoQt::SoQt)
     EOS
     (testpath/"testSoQt.cpp").write <<~EOS
+      #include <iostream>
       #include <Inventor/SoDB.h>
-      #include <Inventor/nodes/SoCube.h>
-      #include <Inventor/nodes/SoSeparator.h>
       #include <Inventor/Qt/SoQt.h>
       #include <Inventor/Qt/viewers/SoQtExaminerViewer.h>
+      #include <QWidget>
       int main(int argc, char** argv) {
         SoDB::init();
         QWidget* widget = SoQt::init(argc, argv, argv[0]);
+        if (NULL == widget) {
+          std::cout << "Could not initialize widget" << std::endl;
+          return 1;
+        }
         SoQtExaminerViewer* viewer = new SoQtExaminerViewer(widget);
-        SoSeparator* root = new SoSeparator();
-        root->ref();
-        SoCube* cube = new SoCube();
-        root->addChild(cube);
-        viewer->setSceneGraph(root);
-        SoQt::show(widget);
-        root->unref();
+        SbColor color(0.5f, 0.5f, 0.5f);
+        viewer->setBackgroundColor(color);
+        if (!viewer->getBackgroundColor().equals(color, 1.0e-6f)) {
+          std::cout << "Could not set background color" << std::endl;
+          delete widget;
+          return 1;
+        }
+        delete viewer;
+        delete widget;
         return 0;
       }
     EOS
