@@ -1,16 +1,11 @@
 class Pqp < Formula
   desc "Library for performing proximity queries on a pair of triangle meshes"
   homepage "https://github.com/GammaUNC/PQP"
-  url "https://github.com/GammaUNC/PQP/archive/e583e835532a94511bf217e999a96952db8fea52.tar.gz"
-  version "1.3"
-  sha256 "233ce59c4358caf080c3d2295c0beb2631e0b877a8c3209f401d28c40ea181f6"
-  head "https://github.com/GammaUNC/PQP/archive/master.tar.gz"
+  url "https://github.com/GammaUNC/PQP.git", :revision => "713de5b70dd1849b915f6412330078a9814e01ab"
+  version "1.3-1"
+  head "https://github.com/GammaUNC/PQP.git"
 
   depends_on "cmake" => :build
-
-  patch do
-    url "https://github.com/GammaUNC/PQP/pull/1.diff?full_index=1"
-  end
 
   def install
     mkdir "build" do
@@ -28,15 +23,45 @@ class Pqp < Formula
       target_link_libraries(testPqp PQP::PQP)
     EOS
     (testpath/"testPqp.cpp").write <<~EOS
+      #include <iostream>
       #include <PQP.h>
       int main() {
-        PQP_REAL p0[3] = { 0.0f, 0.0f, 0.0f };
-        PQP_REAL p1[3] = { 1.0f, 0.0f, 0.0f };
-        PQP_REAL p2[3] = { 0.0f, 1.0f, 0.0f };
+        PQP_REAL p0[3] = { -1.0, 0.0, 0.0 };
+        PQP_REAL p1[3] = { 1.0, 0.0, 0.0 };
+        PQP_REAL p2[3] = { 0.0, 1.0, 0.0 };
         PQP_Model model;
-        model.BeginModel(1);
-        model.AddTri(p0, p1, p2, 0);
-        model.EndModel();
+        if (PQP_OK != model.BeginModel(1)) {
+          std::cout << "Error in BeginModel" << std::endl;
+          return 1;
+        }
+        if (PQP_OK != model.AddTri(p0, p1, p2, 0)) {
+          std::cout << "Error in AddTri" << std::endl;
+          return 1;
+        }
+        if (PQP_OK != model.EndModel()) {
+          std::cout << "Error in EndModel" << std::endl;
+          return 1;
+        }
+        PQP_REAL rotation0[3][3] = {
+          { 1.0, 0.0, 0.0 },
+          { 0.0, 1.0, 0.0 },
+          { 0.0, 0.0, 1.0 }
+        };
+        PQP_REAL rotation1[3][3] = {
+          { 1.0, 0.0, 0.0 },
+          { 0.0, 0.0, -1.0 },
+          { 0.0, 1.0, 0.0 }
+        };
+        PQP_REAL translation[3] = { 0.0, 0.0, 0.0 };
+        PQP_CollideResult collideResult;
+        if (PQP_OK != PQP_Collide(&collideResult, rotation0, translation, &model, rotation1, translation, &model, PQP_FIRST_CONTACT)) {
+          std::cout << "Error in PQP_Collide" << std::endl;
+          return 1;
+        }
+        if (!collideResult.Colliding()) {
+          std::cout << "Error in collision test of intersecting triangles" << std::endl;
+          return 1;
+        }
         return 0;
       }
     EOS
