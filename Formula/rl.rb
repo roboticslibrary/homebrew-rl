@@ -1,11 +1,10 @@
 class Rl < Formula
   desc "Self-contained C++ library for robot kinematics, motion planning and control"
   homepage "https://www.roboticslibrary.org/"
-  head "https://github.com/roboticslibrary/rl/archive/master.tar.gz"
+  head "https://github.com/roboticslibrary/rl.git"
 
   stable do
-    url "https://github.com/roboticslibrary/rl/archive/0.7.0.tar.gz"
-    sha256 "0a8b4c45307dd607bd1c8f56d0f96d40855ad0a697a2642bf3b307c7eb1b3de5"
+    url "https://github.com/roboticslibrary/rl.git", tag: "0.7.0"
     patch do
       url "https://github.com/roboticslibrary/rl/commit/2398cea996dce6c54330d6562fa1079daa1a9d4a.patch?full_index=1"
       sha256 "848679985d67ed7ce5f26e92c1bbcc4013d876291a8b1ea4dfd8f0e6607b6688"
