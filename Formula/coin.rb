@@ -19,7 +19,6 @@ class Coin < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "simage" => :recommended
 
   def install
     mkdir "build" do
