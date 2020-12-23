@@ -4,7 +4,7 @@ class Soqt < Formula
   version "1.6.0-2"
 
   stable do
-    url "https://github.com/coin3d/soqt.git", :revision => "f1849d27162e72a5c37d7c926314ac803261427d"
+    url "https://github.com/coin3d/soqt.git", revision: "f1849d27162e72a5c37d7c926314ac803261427d"
   end
 
   bottle do

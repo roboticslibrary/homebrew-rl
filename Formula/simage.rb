@@ -4,7 +4,7 @@ class Simage < Formula
   version "1.8.0-1"
 
   stable do
-    url "https://github.com/coin3d/simage.git", :revision => "53ab9d3124e91a46b743e2eef67b1f5abb6e2dc5"
+    url "https://github.com/coin3d/simage.git", revision: "53ab9d3124e91a46b743e2eef67b1f5abb6e2dc5"
   end
 
   bottle do

@@ -4,7 +4,7 @@ class Coin < Formula
   version "4.0.0-2"
 
   stable do
-    url "https://github.com/coin3d/coin.git", :revision => "07d438c5e0de005d1eee929caf22df6cb7f17ec3"
+    url "https://github.com/coin3d/coin.git", revision: "07d438c5e0de005d1eee929caf22df6cb7f17ec3"
   end
 
   bottle do

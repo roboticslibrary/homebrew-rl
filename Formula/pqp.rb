@@ -1,7 +1,7 @@
 class Pqp < Formula
   desc "Library for performing proximity queries on a pair of triangle meshes"
   homepage "https://github.com/GammaUNC/PQP"
-  url "https://github.com/GammaUNC/PQP.git", :revision => "713de5b70dd1849b915f6412330078a9814e01ab"
+  url "https://github.com/GammaUNC/PQP.git", revision: "713de5b70dd1849b915f6412330078a9814e01ab"
   version "1.3-1"
   head "https://github.com/GammaUNC/PQP.git"
 
