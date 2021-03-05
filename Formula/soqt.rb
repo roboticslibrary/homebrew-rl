@@ -9,9 +9,9 @@ class Soqt < Formula
 
   bottle do
     root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
-    sha256 cellar: :any, big_sur:  "43f7505c30e430b0f4a0810c70c0c619efef220b9b7fcfd7e56d47415b5785e0"
-    sha256 cellar: :any, catalina: "a5229502e1c2b0a3d857c07f6c101ca890f29689c3e12ffe2bac036ce6c9da3a"
-    sha256 cellar: :any, mojave:   "7a9f9824c5133f82cd30d1b413deed5a7942a6ad169cee27dabba876417d138f"
+    sha256 cellar: :any, big_sur:  "9f22f48c9d500fab32b25c4ba72b8ee67fc61404ff4090feaa654c8eb2e4911a"
+    sha256 cellar: :any, catalina: "b6286af84576e67e7d1fc57fa93dca5367c12324151bd569a48d107a90e0557c"
+    sha256 cellar: :any, mojave:   "e56e2fbc0eb54f032a40ca881fb6feec51a418d5a649beb2f69395848d728eef"
   end
 
   head do
