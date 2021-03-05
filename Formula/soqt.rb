@@ -1,10 +1,10 @@
 class Soqt < Formula
   desc "Qt GUI component toolkit library for Coin"
   homepage "https://github.com/coin3d/soqt"
-  version "1.6.0-2"
+  version "1.6.0-3"
 
   stable do
-    url "https://github.com/coin3d/soqt.git", revision: "f1849d27162e72a5c37d7c926314ac803261427d"
+    url "https://github.com/coin3d/soqt.git", revision: "6b1c74fbc83c7ef4bcc3f23742ba04fa5b6cf350"
   end
 
   bottle do
@@ -64,7 +64,7 @@ class Soqt < Formula
       }
     EOS
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args, "-DCMAKE_PREFIX_PATH=/usr/local/opt/qt/lib/cmake"
+      system "cmake", "..", *std_cmake_args
       system "make"
       system "./testSoQt"
     end
