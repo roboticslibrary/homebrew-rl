@@ -1,7 +1,7 @@
 class Coin < Formula
   desc "High-level, retained-mode toolkit for effective 3D graphics development"
   homepage "https://github.com/coin3d/coin"
-  version "4.0.0-2"
+  version "4.0.0-3"
 
   stable do
     url "https://github.com/coin3d/coin.git", revision: "07d438c5e0de005d1eee929caf22df6cb7f17ec3"
@@ -19,6 +19,7 @@ class Coin < Formula
   end
 
   depends_on "cmake" => :build
+  depends_on "boost"
 
   def install
     mkdir "build" do
