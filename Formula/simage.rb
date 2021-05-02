@@ -8,7 +8,7 @@ class Simage < Formula
   end
 
   bottle do
-    root_url "https://dl.bintray.com/roboticslibrary/bottles-rl"
+    root_url "https://www.roboticslibrary.org/bottles-rl"
     sha256 cellar: :any, big_sur:  "f96a8584cae52460e1491327adf1b5a0371184e738ebd0447331ba8ba42afb77"
     sha256 cellar: :any, catalina: "7f5f3f7255a4b85f230b739313cd0c7b2a1d60f770bfd01ce3eafc1625da99e7"
     sha256 cellar: :any, mojave:   "42553fdf018bf4cae2aa069da6e8d922cbf6ef1ff606d7f0769514feb16bb969"
