@@ -1,34 +1,42 @@
 class Simage < Formula
   desc "Image format loaders and front-ends to common import libraries"
   homepage "https://github.com/coin3d/simage"
-  version "1.8.0-1"
-
-  stable do
-    url "https://github.com/coin3d/simage.git", revision: "53ab9d3124e91a46b743e2eef67b1f5abb6e2dc5"
-  end
+  url "https://github.com/coin3d/simage.git", tag: "v1.8.3"
+  head "https://github.com/coin3d/simage.git", branch: "master"
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any, big_sur:  "f96a8584cae52460e1491327adf1b5a0371184e738ebd0447331ba8ba42afb77"
-    sha256 cellar: :any, catalina: "7f5f3f7255a4b85f230b739313cd0c7b2a1d60f770bfd01ce3eafc1625da99e7"
-    sha256 cellar: :any, mojave:   "42553fdf018bf4cae2aa069da6e8d922cbf6ef1ff606d7f0769514feb16bb969"
-  end
-
-  head do
-    url "https://github.com/coin3d/simage.git"
   end
 
   depends_on "cmake" => :build
-  depends_on "giflib" => :optional
-  depends_on "jpeg" => :optional
-  depends_on "libpng" => :optional
+  depends_on "jasper" => :optional
   depends_on "libsndfile" => :optional
-  depends_on "libtiff" => :optional
   depends_on "libvorbis" => :optional
+  depends_on "qt" => :optional
+
+  on_linux do
+    depends_on "giflib"
+    depends_on "jpeg"
+    depends_on "libpng"
+    depends_on "libtiff"
+    depends_on "zlib"
+  end
 
   def install
+    args = std_cmake_args + %w[
+      -DSIMAGE_BUILD_DOCUMENTATION=OFF
+      -DSIMAGE_BUILD_EXAMPLES=OFF
+      -DSIMAGE_BUILD_TESTS=OFF
+    ]
+    args << "-DSIMAGE_LIBJASPER_SUPPORT=ON" if build.with? "jasper"
+    args << "-DSIMAGE_LIBSNDFILE_SUPPORT=OFF" if build.without? "libsndfile"
+    args << "-DSIMAGE_OGGVORBIS_SUPPORT=OFF" if build.without? "libvorbis"
+    args << "-DSIMAGE_USE_QIMAGE=ON" if build.with? "qt"
+    args << "-DSIMAGE_USE_QT6=ON" if build.with? "qt"
+    inreplace "simage.cfg.cmake.in", "@PKG_CONFIG_COMPILER@", ""
+    inreplace "simage.pc.cmake.in", "@PKG_CONFIG_COMPILER@", ""
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args, "-DSIMAGE_BUILD_EXAMPLES=OFF", "-DSIMAGE_BUILD_TESTS=OFF"
+      system "cmake", "..", *args
       system "make", "install"
     end
   end
