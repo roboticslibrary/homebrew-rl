@@ -9,9 +9,9 @@ class Coin < Formula
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
+    sha256 cellar: :any, monterey: "6042390de025dca8d5c05cf76963e5c60a2fa1a54bf2f05877d3a3335d5ecd68"
     sha256 cellar: :any, big_sur:  "2ab4775eef1a98b18343dd8875ae28f2577090c1bb605d765ddaba90554a797f"
     sha256 cellar: :any, catalina: "f72cb564f54fda1af43546612388de1821df9d716360554483d83f1e652fcdb1"
-    sha256 cellar: :any, mojave:   "3c3eb6be2de9f6ade03a5a2ca6aec79619602bd5bb3e78788e7b1d7b20e326f2"
   end
 
   head do

@@ -5,6 +5,13 @@ class Pqp < Formula
   version "1.3-1"
   head "https://github.com/GammaUNC/PQP.git"
 
+  bottle do
+    root_url "https://www.roboticslibrary.org/bottles-rl"
+    sha256 cellar: :any_skip_relocation, monterey: "3330098f0e077a5d31d24bc1ec82b1e6e7af9f7ed246a4a3df9cc3bece901100"
+    sha256 cellar: :any_skip_relocation, big_sur:  "6ced372b423e1b543861aad1c8dee1e9897ed95e43765cc7e981991d3449c556"
+    sha256 cellar: :any_skip_relocation, catalina: "2b4b6f4093dc931746646c9b304644b7cdc672657a78196302edec9aaa14e298"
+  end
+
   depends_on "cmake" => :build
 
   def install

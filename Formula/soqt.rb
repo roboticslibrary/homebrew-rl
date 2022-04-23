@@ -9,9 +9,9 @@ class Soqt < Formula
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
+    sha256 cellar: :any, monterey: "36056592cef5495a2f721ef0a13982ca3d82f193d4ffe2edd8a736223730e7af"
     sha256 cellar: :any, big_sur:  "9f22f48c9d500fab32b25c4ba72b8ee67fc61404ff4090feaa654c8eb2e4911a"
     sha256 cellar: :any, catalina: "b6286af84576e67e7d1fc57fa93dca5367c12324151bd569a48d107a90e0557c"
-    sha256 cellar: :any, mojave:   "e56e2fbc0eb54f032a40ca881fb6feec51a418d5a649beb2f69395848d728eef"
   end
 
   head do
