@@ -1,7 +1,8 @@
 class Simage < Formula
   desc "Image format loaders and front-ends to common import libraries"
   homepage "https://github.com/coin3d/simage"
-  url "https://github.com/coin3d/simage.git", tag: "v1.8.3"
+  url "https://github.com/coin3d/simage/releases/download/v1.8.3/simage-1.8.3-src.tar.gz"
+  sha256 "ffc0d5a00b74d1e15655ad195bd535f0c0828c9d0f464c1ea4167799c79f6fe7"
   head "https://github.com/coin3d/simage.git", branch: "master"
 
   bottle do
