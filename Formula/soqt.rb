@@ -1,21 +1,12 @@
 class Soqt < Formula
   desc "Qt GUI component toolkit library for Coin"
   homepage "https://github.com/coin3d/soqt"
-  version "1.6.0-3"
-
-  stable do
-    url "https://github.com/coin3d/soqt.git", revision: "6b1c74fbc83c7ef4bcc3f23742ba04fa5b6cf350"
-  end
+  url "https://github.com/coin3d/soqt/releases/download/v1.6.2/soqt-1.6.2-src.tar.gz"
+  sha256 "fb483b20015ab827ba46eb090bd7be5bc2f3d0349c2f947c3089af2b7003869c"
+  head "https://github.com/coin3d/soqt.git", branch: "master"
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any, monterey: "36056592cef5495a2f721ef0a13982ca3d82f193d4ffe2edd8a736223730e7af"
-    sha256 cellar: :any, big_sur:  "9f22f48c9d500fab32b25c4ba72b8ee67fc61404ff4090feaa654c8eb2e4911a"
-    sha256 cellar: :any, catalina: "b6286af84576e67e7d1fc57fa93dca5367c12324151bd569a48d107a90e0557c"
-  end
-
-  head do
-    url "https://github.com/coin3d/soqt.git"
   end
 
   depends_on "cmake" => :build
