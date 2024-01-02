@@ -1,21 +1,12 @@
 class Coin < Formula
   desc "High-level, retained-mode toolkit for effective 3D graphics development"
   homepage "https://github.com/coin3d/coin"
-  version "4.0.0-3"
-
-  stable do
-    url "https://github.com/coin3d/coin.git", revision: "07d438c5e0de005d1eee929caf22df6cb7f17ec3"
-  end
+  url "https://github.com/coin3d/coin/releases/download/v4.0.2/coin-4.0.2-src.tar.gz"
+  sha256 "bd6bce1efedfdbc8a914bc11a10dd319a16d19c3ccc6979faf5c85e5e94a416e"
+  head "https://github.com/coin3d/coin.git", branch: "master"
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any, monterey: "6042390de025dca8d5c05cf76963e5c60a2fa1a54bf2f05877d3a3335d5ecd68"
-    sha256 cellar: :any, big_sur:  "2ab4775eef1a98b18343dd8875ae28f2577090c1bb605d765ddaba90554a797f"
-    sha256 cellar: :any, catalina: "f72cb564f54fda1af43546612388de1821df9d716360554483d83f1e652fcdb1"
-  end
-
-  head do
-    url "https://github.com/coin3d/coin.git"
   end
 
   depends_on "cmake" => :build
@@ -37,7 +28,7 @@ class Coin < Formula
       target_link_libraries(testCoin Coin::Coin)
     EOS
     (testpath/"test.iv").write <<~EOS
-      \#Inventor V1.0 ascii
+      #Inventor V1.0 ascii
       DEF test Cube {
       }
     EOS
