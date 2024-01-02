@@ -3,13 +3,13 @@ class Pqp < Formula
   homepage "https://github.com/GammaUNC/PQP"
   url "https://github.com/GammaUNC/PQP.git", revision: "713de5b70dd1849b915f6412330078a9814e01ab"
   version "1.3-1"
-  head "https://github.com/GammaUNC/PQP.git"
+  head "https://github.com/GammaUNC/PQP.git", branch: "master"
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any_skip_relocation, monterey: "3330098f0e077a5d31d24bc1ec82b1e6e7af9f7ed246a4a3df9cc3bece901100"
-    sha256 cellar: :any_skip_relocation, big_sur:  "6ced372b423e1b543861aad1c8dee1e9897ed95e43765cc7e981991d3449c556"
-    sha256 cellar: :any_skip_relocation, catalina: "2b4b6f4093dc931746646c9b304644b7cdc672657a78196302edec9aaa14e298"
+    sha256 cellar: :any_skip_relocation, sonoma:   "f1551a43c822f63313d76d248df0a09416cdf8f91420b71860679a13ffbb5763"
+    sha256 cellar: :any_skip_relocation, ventura:  "ba21e8c9afe64c45cb064602d30dca9b6c19c2ad742651ebd3a640182acb488b"
+    sha256 cellar: :any_skip_relocation, monterey: "fe3b3c0f8fd0fd2e12723c29410609ab3bab195444eab2da49f8a638087c72b1"
   end
 
   depends_on "cmake" => :build

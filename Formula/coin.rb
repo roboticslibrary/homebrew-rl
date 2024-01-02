@@ -7,6 +7,9 @@ class Coin < Formula
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
+    sha256 cellar: :any, sonoma:   "568a8db852953b35c9806d14e4effebf166528b7a2ae8ea280df64d3ea566818"
+    sha256 cellar: :any, ventura:  "23cd9c16e1f6bd5d0b25914d847c935debb456c23515be01f117574b621594ef"
+    sha256 cellar: :any, monterey: "d61a62a56cee59fccda7d5afe7968db538ee2b04696f96b1af703fbfd781a0fe"
   end
 
   depends_on "cmake" => :build

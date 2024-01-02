@@ -7,6 +7,9 @@ class Soqt < Formula
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
+    sha256 cellar: :any, sonoma:   "41596bd1d219a877b66147462d06c38a3fed549c165d09f36447ae552a70d8fb"
+    sha256 cellar: :any, ventura:  "84745b4c001cc307f4cd95235fd3aad02bb685f04d34c8c32b54ca17c82ee367"
+    sha256 cellar: :any, monterey: "09aa52665a4e24579c3b739375217cb1658539e002c497ae8d8ba126a4467593"
   end
 
   depends_on "cmake" => :build

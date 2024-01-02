@@ -7,9 +7,9 @@ class Simage < Formula
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any, monterey: "90cdcaf140cc86fe9f2e37a895beeb92aaebf3afe28f636553237964096498cd"
-    sha256 cellar: :any, big_sur:  "09e6c8243170b144fd67514d769e6492eab66b5b80bab6d8a4d79b9fffc27168"
-    sha256 cellar: :any, catalina: "665f7f5d27b50d23c8bc6ca6e4df99a3c3765f4b6db1edd5de5b77a5cc394abe"
+    sha256 cellar: :any, sonoma:   "1964f65d093a076dc64baccca87efd23979e0559f3752b90b33c5c61ffe09203"
+    sha256 cellar: :any, ventura:  "2e6d8e9a665eb68d1d582806089ddd2ed5d25d121f0b9a8d7454a37f05c32fda"
+    sha256 cellar: :any, monterey: "f6a646696607c9525e208e0e75abfb4d5959f82e0d8877a9361d6022a44196c5"
   end
 
   depends_on "cmake" => :build
