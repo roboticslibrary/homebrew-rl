@@ -17,7 +17,7 @@ class Rl < Formula
 
   depends_on "cmake" => :build
   depends_on "boost"
-  depends_on "coin"
+  depends_on "coin3d"
   depends_on "eigen"
   depends_on "bullet" => :recommended
   depends_on "nlopt" => :recommended
@@ -25,7 +25,6 @@ class Rl < Formula
   depends_on "pqp" => :recommended
   depends_on "qt" => :recommended
   depends_on "solid" => :recommended
-  depends_on "soqt" => :recommended
 
   def install
     mkdir "build" do
