@@ -2,28 +2,27 @@ class Pqp < Formula
   desc "Library for performing proximity queries on a pair of triangle meshes"
   homepage "https://github.com/GammaUNC/PQP"
   url "https://github.com/GammaUNC/PQP.git", revision: "713de5b70dd1849b915f6412330078a9814e01ab"
-  version "1.3-1"
+  version "1.3-2"
   head "https://github.com/GammaUNC/PQP.git", branch: "master"
 
   bottle do
     root_url "https://www.roboticslibrary.org/bottles-rl"
-    sha256 cellar: :any_skip_relocation, sonoma:   "f1551a43c822f63313d76d248df0a09416cdf8f91420b71860679a13ffbb5763"
-    sha256 cellar: :any_skip_relocation, ventura:  "ba21e8c9afe64c45cb064602d30dca9b6c19c2ad742651ebd3a640182acb488b"
-    sha256 cellar: :any_skip_relocation, monterey: "fe3b3c0f8fd0fd2e12723c29410609ab3bab195444eab2da49f8a638087c72b1"
+    sha256 cellar: :any_skip_relocation, sonoma:  "f009da57716777255dfd5a59cb76e93c204c737bf8b3b57841b7a2b9f78d9a49"
+    sha256 cellar: :any_skip_relocation, ventura: "c0c941eed2e171ef5a602be425ef48f7f03a67026c7d280dfe2c9b551e7fcbb8"
   end
 
   depends_on "cmake" => :build
 
   def install
     mkdir "build" do
-      system "cmake", "..", *std_cmake_args
+      system "cmake", "..", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", *std_cmake_args
       system "make", "install"
     end
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
-      cmake_minimum_required(VERSION 2.8.11)
+      cmake_minimum_required(VERSION 3.5...3.31 FATAL_ERROR)
       project(testPqp)
       find_package(PQP)
       add_executable(testPqp testPqp.cpp)
